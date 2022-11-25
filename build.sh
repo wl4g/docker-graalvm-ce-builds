@@ -41,7 +41,7 @@ function build_images() {
     if [ ! -f "$graalvmTarFile" ]; then
       echo "Downloading graalvm-ce-${JAVA_VERSION}-${OS_NAME}-${ARCH_NAME}-${GRAALVM_VERSION} tar ..."
       cd ${BASE_DIR}/materials/ \
-        && curl -o graalvm-ce-${JAVA_VERSION}-${OS_NAME}-${ARCH_NAME}-${GRAALVM_VERSION}.tar.gz -L "https://github.com/graalvm/graalvm-ce/releases/download/vm-${GRAALVM_VERSION}/graalvm-ce-${JAVA_VERSION}-${OS_NAME}-${ARCH_NAME}-${GRAALVM_VERSION}.tar.gz"
+        && curl -o graalvm-ce-${JAVA_VERSION}-${OS_NAME}-${ARCH_NAME}-${GRAALVM_VERSION}.tar.gz -L "https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-${GRAALVM_VERSION}/graalvm-ce-${JAVA_VERSION}-${OS_NAME}-${ARCH_NAME}-${GRAALVM_VERSION}.tar.gz"
     fi
     echo "Unpacking graalvm-ce-${JAVA_VERSION}-${OS_NAME}-${ARCH_NAME}-${GRAALVM_VERSION}.tar.gz ..."
     cd ${BASE_DIR}/materials/ \
