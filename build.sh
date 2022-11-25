@@ -59,14 +59,14 @@ function push_images() {
   repo_uri="$(echo $repo_uri | sed -E 's|/$||g')"
 
   echo "Tagging images to $repo_uri ..."
-  docker tag wl4g/graalvm:${BUILD_IMAGE_VERSION} $repo_uri/graalvm:${BUILD_IMAGE_VERSION}
-  docker tag wl4g/graalvm:${BUILD_IMAGE_VERSION} $repo_uri/graalvm:latest
+  docker tag wl4g/graalvm-ce:${BUILD_IMAGE_VERSION} $repo_uri/graalvm-ce:${BUILD_IMAGE_VERSION}
+  docker tag wl4g/graalvm-ce:${BUILD_IMAGE_VERSION} $repo_uri/graalvm-ce:latest
 
   echo "Pushing images of ${BUILD_IMAGE_VERSION}@$repo_uri ..."
-  docker push $repo_uri/graalvm:${BUILD_IMAGE_VERSION} &
+  docker push $repo_uri/graalvm-ce:${BUILD_IMAGE_VERSION} &
 
   echo "Pushing images of latest@$repo_uri ..."
-  docker push $repo_uri/graalvm &
+  docker push $repo_uri/graalvm-ce &
 
   wait
 }
