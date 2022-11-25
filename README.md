@@ -5,7 +5,8 @@
 - Build native image example
 
 ```bash
-#TODO
+# Testing graalvm plugins
+docker run --rm wl4g/graalvm-ce:22.3.0-java17 gu list
 ```
 
 ## 2. Development Guide
