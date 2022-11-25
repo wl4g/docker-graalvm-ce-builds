@@ -23,5 +23,5 @@ RUN sed -i 's/http:\/\/cn.archive.ubuntu.com\/ubuntu/http:\/\/mirrors.aliyun.com
 && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 && for f in $(ls /graalvm-ce/bin/); do ln -sf /graalvm-ce/bin/$f /bin/$f; done \
 && chmod -R 777 /graalvm-ce \
-&& gu install native-image js \
+&& /graalvm-ce/bin/gu install native-image js \
 && echo "Asia/Shanghai" > /etc/timezone
