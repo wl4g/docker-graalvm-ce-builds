@@ -17,6 +17,8 @@
 FROM ubuntu:20.04
 LABEL maintainer="James Wong<jameswong1376@gmail.com>"
 
+WORKDIR /workspace
+
 COPY materials/graalvm-ce/ /graalvm-ce/
 
 RUN sed -i 's/http:\/\/cn.archive.ubuntu.com\/ubuntu/http:\/\/mirrors.aliyun.com\/ubuntu/g' /etc/apt/sources.list \
@@ -27,7 +29,6 @@ RUN sed -i 's/http:\/\/cn.archive.ubuntu.com\/ubuntu/http:\/\/mirrors.aliyun.com
 && echo 'export GRAALVM_HOME=/graalvm-ce' >> /etc/profile.d/graalvm.sh \
 && echo 'export PATH=$PATH:$GRAALVM_HOME/bin' >> /etc/profile.d/graalvm.sh \
 && . /etc/profile \
+&& for f in $(ls /graalvm-ce/bin/); do ln -sf /graalvm-ce/bin/$f /bin/$f; done \
 && /graalvm-ce/bin/gu install -y native-image js \
 && echo "Asia/Shanghai" > /etc/timezone
-
-ENTRYPOINT [ "/graalvm-ce/bin/native-image" ]

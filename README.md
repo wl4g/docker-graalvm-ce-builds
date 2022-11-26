@@ -2,11 +2,17 @@
 
 ## 1. Quick start
 
-- Build native image example
+- Show gu plugins
 
 ```bash
 # Testing graalvm plugins
-docker run --rm wl4g/graalvm-ce:22.3.0-java17 gu list
+docker run --rm --entrypoint /graalvm-ce/bin/gu wl4g/graalvm-ce:22.3.0-java17 list
+```
+
+- Build native image example
+
+```bash
+
 ```
 
 ## 2. Development Guide
