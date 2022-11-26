@@ -20,8 +20,11 @@ LABEL maintainer="James Wong<jameswong1376@gmail.com>"
 COPY materials/graalvm-ce/ /graalvm-ce/
 
 RUN sed -i 's/http:\/\/cn.archive.ubuntu.com\/ubuntu/http:\/\/mirrors.aliyun.com\/ubuntu/g' /etc/apt/sources.list \
+&& apt update \
+&& apt install gcc \
 && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-&& for f in $(ls /graalvm-ce/bin/); do ln -sf /graalvm-ce/bin/$f /bin/$f; done \
 && chmod -R 777 /graalvm-ce \
-&& /graalvm-ce/bin/gu install native-image js \
+&& echo "export GRAALVM_HOME=/graalvm-ce\nexport PATH=\$PATH:\$GRAALVM_HOME/bin" >> /etc/bash.bashrc \
+&& . /etc/bash.bashrc \
+&& gu install native-image js \
 && echo "Asia/Shanghai" > /etc/timezone
