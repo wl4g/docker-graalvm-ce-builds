@@ -24,7 +24,8 @@ RUN sed -i 's/http:\/\/cn.archive.ubuntu.com\/ubuntu/http:\/\/mirrors.aliyun.com
 && apt install gcc \
 && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 && chmod -R 777 /graalvm-ce \
-&& echo "export GRAALVM_HOME=/graalvm-ce\nexport PATH=\$PATH:\$GRAALVM_HOME/bin" >> /etc/bash.bashrc \
+&& echo "export GRAALVM_HOME=/graalvm-ce" >> /etc/bash.bashrc \
+&& echo "export PATH=\$PATH:\$GRAALVM_HOME/bin" >> /etc/bash.bashrc \
 && . /etc/bash.bashrc \
 && gu install native-image js \
 && echo "Asia/Shanghai" > /etc/timezone
