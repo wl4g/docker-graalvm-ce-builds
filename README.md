@@ -7,11 +7,11 @@
 ```bash
 alias d='docker'
 
-d run --rm wl4g/graalvm-ce:22.1.0-java11 gu list
 d run --rm wl4g/graalvm-ce:22.3.0-java17 gu list
+d run --rm wl4g/graalvm-ce:22.1.0-java11 gu list
 
-d run --rm registry.cn-shenzhen.aliyuncs.com/wl4g/graalvm-ce:22.1.0-java11 gu list
 d run --rm registry.cn-shenzhen.aliyuncs.com/wl4g/graalvm-ce:22.3.0-java17 gu list
+d run --rm registry.cn-shenzhen.aliyuncs.com/wl4g/graalvm-ce:22.1.0-java11 gu list
 ```
 
 - Build with Maven example
