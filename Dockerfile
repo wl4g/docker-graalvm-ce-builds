@@ -28,3 +28,5 @@ RUN sed -i 's/http:\/\/cn.archive.ubuntu.com\/ubuntu/http:\/\/mirrors.aliyun.com
 && . /etc/bash.bashrc \
 && gu install native-image js \
 && echo "Asia/Shanghai" > /etc/timezone
+
+ENTRYPOINT [ "native-image" ]
