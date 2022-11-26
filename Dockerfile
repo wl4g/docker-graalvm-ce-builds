@@ -32,4 +32,4 @@ RUN sed -i 's/http:\/\/cn.archive.ubuntu.com\/ubuntu/http:\/\/mirrors.aliyun.com
 && . /etc/profile \
 && for f in $(ls /graalvm-ce/bin/); do ln -sf /graalvm-ce/bin/$f /bin/$f; done \
 && /graalvm-ce/bin/gu install native-image \
-&& [ -z "$(/graalvm-ce/bin/gu list|grep Graal.js)" ] && /graalvm-ce/bin/gu install js \
+&& [ -z "$(/graalvm-ce/bin/gu list|grep Graal.js)" ] && /graalvm-ce/bin/gu install js # Must be >=22.2.0 to be required

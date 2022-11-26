@@ -6,7 +6,7 @@
 
 ```bash
 alias d='docker'
-d run --rm wl4g/graalvm-ce:22.3.0-java17 /graalvm-ce/bin/gu list
+d run --rm wl4g/graalvm-ce:22.3.0-java17 gu list
 ```
 
 - Build with Maven example
