@@ -34,6 +34,8 @@ registry.cn-shenzhen.aliyuncs.com/wl4g/graalvm-ce:22.3.0-java17 \
 ## 2. Development Guide
 
 ```bash
+git clone git@github.com:wl4g/graalvm-ce-builds.git
+cd graalvm-ce-builds
 ./build.sh build
 ./build.sh push
 ```
