@@ -19,11 +19,15 @@ LABEL maintainer="James Wong<jameswong1376@gmail.com>"
 
 COPY materials/graalvm-ce/ /graalvm-ce/
 
-RUN chmod -R 777 /graalvm-ce \
+RUN sed -i 's/http:\/\/cn.archive.ubuntu.com\/ubuntu/http:\/\/mirrors.aliyun.com\/ubuntu/g' /etc/apt/sources.list \
+&& apt update \
+&& apt install -y gcc \
+&& ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+&& chmod -R 777 /graalvm-ce \
 && echo 'export GRAALVM_HOME=/graalvm-ce' >> /etc/profile.d/graalvm.sh \
 && echo 'export PATH=$PATH:$GRAALVM_HOME/bin' >> /etc/profile.d/graalvm.sh \
 && . /etc/profile \
 && gu install -y native-image js \
 && echo "Asia/Shanghai" > /etc/timezone
 
-ENTRYPOINT [ "native-image" ]
+ENTRYPOINT [ "/graalvm-ce/bin/native-image" ]
