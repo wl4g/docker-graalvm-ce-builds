@@ -20,10 +20,9 @@ LABEL maintainer="James Wong<jameswong1376@gmail.com>"
 COPY materials/graalvm-ce/ /graalvm-ce/
 
 RUN chmod -R 777 /graalvm-ce \
-&& echo 'export GRAALVM_HOME=/graalvm-ce' >> /etc/bash.bashrc \
-&& echo 'export PATH=$PATH:$GRAALVM_HOME/bin' >> /etc/bash.bashrc \
-&& . /etc/bash.bashrc \
-&& cat /etc/bash.bashrc \
+&& echo 'export GRAALVM_HOME=/graalvm-ce' >> /etc/profile.d/graalvm.sh \
+&& echo 'export PATH=$PATH:$GRAALVM_HOME/bin' >> /etc/profile.d/graalvm.sh \
+&& . /etc/profile \
 && gu install -y native-image js \
 && echo "Asia/Shanghai" > /etc/timezone
 
