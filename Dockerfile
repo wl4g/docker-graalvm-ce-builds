@@ -21,13 +21,13 @@ COPY materials/graalvm-ce/ /graalvm-ce/
 
 RUN sed -i 's/http:\/\/cn.archive.ubuntu.com\/ubuntu/http:\/\/mirrors.aliyun.com\/ubuntu/g' /etc/apt/sources.list \
 && apt update \
-&& apt install gcc \
+&& apt install -y gcc \
 && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 && chmod -R 777 /graalvm-ce \
 && echo "export GRAALVM_HOME=/graalvm-ce" >> /etc/bash.bashrc \
 && echo "export PATH=\$PATH:\$GRAALVM_HOME/bin" >> /etc/bash.bashrc \
 && . /etc/bash.bashrc \
-&& gu install native-image js \
+&& gu install -y native-image js \
 && echo "Asia/Shanghai" > /etc/timezone
 
 ENTRYPOINT [ "native-image" ]
