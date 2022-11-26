@@ -27,7 +27,7 @@ RUN sed -i 's/http:\/\/cn.archive.ubuntu.com\/ubuntu/http:\/\/mirrors.aliyun.com
 && echo 'export GRAALVM_HOME=/graalvm-ce' >> /etc/profile.d/graalvm.sh \
 && echo 'export PATH=$PATH:$GRAALVM_HOME/bin' >> /etc/profile.d/graalvm.sh \
 && . /etc/profile \
-&& gu install -y native-image js \
+&& /graalvm-ce/bin/gu install -y native-image js \
 && echo "Asia/Shanghai" > /etc/timezone
 
 ENTRYPOINT [ "/graalvm-ce/bin/native-image" ]
