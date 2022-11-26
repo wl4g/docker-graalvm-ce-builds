@@ -30,8 +30,8 @@ RUN sed -i 's/http:\/\/cn.archive.ubuntu.com\/ubuntu/http:\/\/mirrors.aliyun.com
 && echo 'export GRAALVM_HOME=/graalvm-ce' >> /etc/profile.d/graalvm.sh \
 && echo 'export PATH=$PATH:$GRAALVM_HOME/bin' >> /etc/profile.d/graalvm.sh \
 && . /etc/profile \
-&& for f in $(ls /graalvm-ce/bin/); do ln -sf /graalvm-ce/bin/$f /bin/$f; done \
 && gu --version \
 && gu install native-image \
 # Must be >=22.2.0 to be required
-&& [ -z "\$(gu list|grep Graal.js)" ] && gu install js || echo
+&& [ -z "\$(gu list|grep Graal.js)" ] && gu install js || echo \
+&& for f in $(ls /graalvm-ce/bin/); do ln -sf /graalvm-ce/bin/$f /bin/$f; done
