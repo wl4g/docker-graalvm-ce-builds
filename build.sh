@@ -16,10 +16,10 @@
 set -e
 
 export BASE_DIR=$(cd "`dirname $0`"/; pwd)
-export OS_NAME="linux"
-export ARCH_NAME="amd64"
-export JAVA_VERSION="java17"
-export GRAALVM_VERSION="22.3.0"
+export OS_NAME=${OS_NAME:-linux}
+export ARCH_NAME=${ARCH_NAME:-amd64}
+export JAVA_VERSION=${JAVA_VERSION:-java17}
+export GRAALVM_VERSION=${GRAALVM_VERSION:-22.3.0}
 export BUILD_IMAGE_VERSION="${GRAALVM_VERSION}-${JAVA_VERSION}"
 
 function print_help() {
