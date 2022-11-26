@@ -25,10 +25,10 @@ RUN sed -i 's/http:\/\/cn.archive.ubuntu.com\/ubuntu/http:\/\/mirrors.aliyun.com
 && apt update \
 && apt install -y gcc \
 && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+&& echo "Asia/Shanghai" > /etc/timezone \
 && chmod -R 777 /graalvm-ce \
 && echo 'export GRAALVM_HOME=/graalvm-ce' >> /etc/profile.d/graalvm.sh \
 && echo 'export PATH=$PATH:$GRAALVM_HOME/bin' >> /etc/profile.d/graalvm.sh \
 && . /etc/profile \
 && for f in $(ls /graalvm-ce/bin/); do ln -sf /graalvm-ce/bin/$f /bin/$f; done \
-&& /graalvm-ce/bin/gu install native-image js \
-&& echo "Asia/Shanghai" > /etc/timezone
+&& /graalvm-ce/bin/gu install native-image js 2>&1
