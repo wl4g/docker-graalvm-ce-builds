@@ -29,8 +29,6 @@ registry.cn-shenzhen.aliyuncs.com/wl4g/graalvm-ce:22.3.0-java17 \
 
 ```bash
 d run --rm \
--v $M2_HOME:/maven \
--v $HOME/.m2/:/root/.m2 \
 -v $PWD/myproject:/workspace \
 registry.cn-shenzhen.aliyuncs.com/wl4g/graalvm-ce:22.3.0-java17 \
 /graalvm-ce/bin/native-image -jar -H:+ReportExceptionStackTraces /workspace/target/myproject-0.0.1-SNAPSHOT.jar
