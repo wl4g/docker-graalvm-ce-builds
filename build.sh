@@ -36,6 +36,27 @@ function build_images() {
   local graalvmDir="${BASE_DIR}/materials/graalvm-ce"
   echo "Checking ${graalvmDir} ..."
   if [ ! -d "${graalvmDir}" ]; then
+    unpack_graalvm
+  else
+    # for example:
+    # ./materials/graalvm-ce/bin/java --version
+    # openjdk 11.0.15 2022-04-19
+    # OpenJDK Runtime Environment GraalVM CE 22.1.0 (build 11.0.15+10-jvmci-22.1-b06)
+    # OpenJDK 64-Bit Server VM GraalVM CE 22.1.0 (build 11.0.15+10-jvmci-22.1-b06, mixed mode, sharing)
+
+    local existingJavaVersion=$(echo "java"$graalvmDir/bin/java --version|grep -Eo '([0-9]+\.[0-9]+\.[0-9]+)'|head -1|grep -Eo '^([0-9]+)')
+    echo "Exsting graalvm java version: $existingJavaVersion"
+    if [ "$JAVA_VERSION" != "$existingJavaVersion"  ]; then
+      [ -n "$graalvmDir" ] && rm -rf "$graalvmDir" || echo
+      unpack_graalvm
+    fi
+  fi
+
+  echo "Building ${BUILD_IMAGE_VERSION} images ..."
+  cd $BASE_DIR && docker build -t wl4g/graalvm-ce:${BUILD_IMAGE_VERSION} .
+}
+
+function unpack_graalvm(){
     local graalvmTarFile="${BASE_DIR}/materials/graalvm-ce-${JAVA_VERSION}-${OS_NAME}-${ARCH_NAME}-${GRAALVM_VERSION}.tar.gz"
     echo "Checking ${graalvmTarFile} ..."
     if [ ! -f "$graalvmTarFile" ]; then
@@ -46,10 +67,6 @@ function build_images() {
     cd ${BASE_DIR}/materials/ \
         && mkdir graalvm-ce \
         && tar -xvf graalvm-ce-${JAVA_VERSION}-${OS_NAME}-${ARCH_NAME}-${GRAALVM_VERSION}.tar.gz --strip-components=1 -C graalvm-ce
-  fi
-
-  echo "Building ${BUILD_IMAGE_VERSION} images ..."
-  cd $BASE_DIR && docker build -t wl4g/graalvm-ce:${BUILD_IMAGE_VERSION} .
 }
 
 function push_images() {
